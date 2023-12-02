@@ -14,6 +14,7 @@ const App = () => {
    
   const [selected, setSelected] = useState(Math.floor(Math.random()*8))
   const [votes, setVotes] = useState(new Uint8Array(8))
+  const [winner,setWinner] = useState(0)
 
   const handleWisdom = () => {
     setSelected(Math.floor(Math.random()*8))
@@ -24,14 +25,20 @@ const App = () => {
     const updatedVotes = [...votes]
     updatedVotes[selected] += 1
     setVotes(updatedVotes)
+    const newWinner = updatedVotes.indexOf(Math.max(...updatedVotes))
+    setWinner(newWinner)
   }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <button onClick={handleVote}>vote</button>
       <button onClick={handleWisdom}>Generate wisdom</button>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[winner]}</p>
+      <p>has {votes[winner]} votes</p>
     </div>
   )
 }
