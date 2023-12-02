@@ -1,31 +1,34 @@
 import { useState } from 'react'
 
 const Statistics = (props) => {
-  if (props.all==0) {
+  if (props.all == 0) {
     return (
       <div>
         No feedback given
       </div>
     )
   }
-  
+
   return (
-    <div>
+    <table>
       <StatisticLine text="good" value={props.good} />
       <StatisticLine text="neutral" value={props.neutral} />
       <StatisticLine text="bad" value={props.bad} />
       <StatisticLine text="all" value={props.all} />
       <StatisticLine text="average" value={props.average} />
-      <StatisticLine text="positive" value={props.positive+"%"} />
-    </div>
+      <StatisticLine text="positive" value={props.positive + "%"} />
+    </table>
   )
 }
 
-const StatisticLine = ({text,value}) => 
-  <p>{text} {value}</p>
+const StatisticLine = ({ text, value }) =>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
 
 
-const Button = ({handleClick,text}) => 
+const Button = ({ handleClick, text }) =>
   <button onClick={handleClick}>{text}</button>
 
 
